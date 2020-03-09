@@ -88,13 +88,12 @@
 		8B698C5A24150CEA0063E61A /* ColorPalette */ = {
 			isa = PBXGroup;
 			children = (
-				8B698C5B24150CEA0063E61A /* AppDelegate.swift */,
-				8B698C5D24150CEA0063E61A /* SceneDelegate.swift */,
 				8B698C79241619030063E61A /* Modules */,
 				8B698C7A241619160063E61A /* Model */,
-				8B698C73241517E80063E61A /* MainTapBarView.swift */,
 				8B698C6124150CEB0063E61A /* Assets.xcassets */,
 				8B698C6624150CEB0063E61A /* LaunchScreen.storyboard */,
+				8B698C5D24150CEA0063E61A /* SceneDelegate.swift */,
+				8B698C5B24150CEA0063E61A /* AppDelegate.swift */,
 				8B698C6924150CEB0063E61A /* Info.plist */,
 				8B698C6324150CEB0063E61A /* Preview Content */,
 			);
@@ -112,6 +111,7 @@
 		8B698C79241619030063E61A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8B698C73241517E80063E61A /* MainTapBarView.swift */,
 				8B36215F241622FD00DD476E /* UserPalettes */,
 				8B3621602416230900DD476E /* PaletteDetail */,
 				8B362161241623DC00DD476E /* InfoView.swift */,

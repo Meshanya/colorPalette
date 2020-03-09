@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B362162241623DC00DD476E /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B362161241623DC00DD476E /* InfoView.swift */; };
+		8B362164241626AB00DD476E /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B362163241626AB00DD476E /* ModalView.swift */; };
 		8B698C5C24150CEA0063E61A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B698C5B24150CEA0063E61A /* AppDelegate.swift */; };
 		8B698C5E24150CEA0063E61A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B698C5D24150CEA0063E61A /* SceneDelegate.swift */; };
 		8B698C6024150CEA0063E61A /* UserPalettesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B698C5F24150CEA0063E61A /* UserPalettesView.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B362161241623DC00DD476E /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		8B362163241626AB00DD476E /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		8B698C5824150CEA0063E61A /* ColorPalette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorPalette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B698C5B24150CEA0063E61A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B698C5D24150CEA0063E61A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 			children = (
 				8B36215F241622FD00DD476E /* UserPalettes */,
 				8B3621602416230900DD476E /* PaletteDetail */,
+				8B362161241623DC00DD476E /* InfoView.swift */,
+				8B362163241626AB00DD476E /* ModalView.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -197,9 +203,11 @@
 				8B698C74241517E80063E61A /* MainTapBarView.swift in Sources */,
 				8B698C78241613290063E61A /* PaletteRow.swift in Sources */,
 				8B698C5C24150CEA0063E61A /* AppDelegate.swift in Sources */,
+				8B362164241626AB00DD476E /* ModalView.swift in Sources */,
 				8B698C722415134B0063E61A /* Palette.swift in Sources */,
 				8B698C76241579C60063E61A /* PaletteDetailView.swift in Sources */,
 				8B698C5E24150CEA0063E61A /* SceneDelegate.swift in Sources */,
+				8B362162241623DC00DD476E /* InfoView.swift in Sources */,
 				8B698C6024150CEA0063E61A /* UserPalettesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,13 +11,17 @@ import Combine
 
 struct UserPalettesView: View {
     @EnvironmentObject var viewModel: UserPalettesViewModel
+    @Binding var selectedItem: Int?
     
     var body: some View {
         NavigationView {
-            List(viewModel.palettes) { palette in
-                PaletteRow(palette: palette)
-                NavigationLink(destination: PaletteDetailView(palette: palette)) {
-                    EmptyView()
+            List {
+                ForEach(0..<viewModel.palettes.count) { index in
+                    NavigationLink(destination: PaletteDetailView(palette: self.viewModel.palettes[index]),
+                                   tag: index,
+                                   selection: self.$selectedItem) {
+                        PaletteRow(palette: self.viewModel.palettes[index])
+                    }
                 }
             }
             .navigationBarTitle(Text("Your Palettes"))
@@ -27,6 +31,7 @@ struct UserPalettesView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        UserPalettesView().environmentObject(UserPalettesViewModel())
+        UserPalettesView(selectedItem: .constant(0))
+            .environmentObject(UserPalettesViewModel())
     }
 }

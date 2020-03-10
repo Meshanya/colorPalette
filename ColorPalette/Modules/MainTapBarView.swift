@@ -10,17 +10,19 @@ import SwiftUI
 
 struct MainTapBarView: View {
     @State private var selectedTab = 0
+    @State private var selectedItem: Int?
     
     var body: some View {
         TabView(selection: $selectedTab) {
             Button("Go to Your palettes", action: {
                 self.selectedTab = 1
+                self.selectedItem = 0
             })
                 .tabItem {
                     Text("Default Palettes")
                     Image(systemName: "bandage")
             }.tag(0)
-            UserPalettesView().environmentObject(UserPalettesViewModel())
+            UserPalettesView(selectedItem: $selectedItem).environmentObject(UserPalettesViewModel())
                 .tabItem {
                     Text("Your palettes")
                     Image(systemName: "heart")

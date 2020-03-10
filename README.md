@@ -1,2 +1,3 @@
-# colorPalette
-Color Palette
+# Color Palette
+
+Приложение для изучения SwiftUI и отправки дз на проверку.

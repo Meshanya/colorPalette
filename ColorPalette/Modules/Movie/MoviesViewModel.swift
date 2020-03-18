@@ -9,24 +9,41 @@
 import Combine
 
 final class MoviesViewModel: ObservableObject {
-    var movieAPI = MovieStore.shared
+    private var movieAPI = MovieStore.shared
     
-    // Input
     @Published var indexEndpoint: Int = 2
-    //Output
     @Published var movies = [Movie]()
+    @Published var nextPageMovies = [Movie]()
+    
+    @Published private var page: Int = 1
+    @Published private(set) var isPageLoading: Bool = false
     
     private var cancellableSet: Set<AnyCancellable> = []
+    private var nextPageCancellableSet: Set<AnyCancellable> = []
     
     init() {
         $indexEndpoint
             .flatMap { (index) -> AnyPublisher<[Movie], Never> in
-                self.movieAPI.fetchMovies(from: Endpoint(index: index)!)
+                self.page = 0
+                return self.movieAPI.fetchMovies(from: Endpoint(index: index)!)
                 .replaceError(with: [])
                 .eraseToAnyPublisher()
         }
         .assign(to: \.movies, on: self)
         .store(in: &cancellableSet)
+    }
+    
+    func listItemAppears(movie: Movie) {
+        if movies.isLast(movie) && !isPageLoading {
+            self.page += 1
+            isPageLoading = true
+            movieAPI.fetchMovies(from: Endpoint(index: self.indexEndpoint)!, with: page)
+                .replaceError(with: [])
+                .assign(to: \.nextPageMovies, on: self)
+                .store(in: &nextPageCancellableSet)
+            movies += nextPageMovies
+            isPageLoading = false
+        }
     }
     
     deinit {

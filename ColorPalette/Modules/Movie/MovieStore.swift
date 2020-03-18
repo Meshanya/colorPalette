@@ -27,9 +27,9 @@ public class MovieStore: MovieService {
         return jsonDecoder
     }()
     
-    func fetchMovies(from endpoint: Endpoint) -> Future<[Movie], MovieStoreAPIError> {
+    func fetchMovies(from endpoint: Endpoint, with page: Int? = nil) -> Future<[Movie], MovieStoreAPIError> {
         return Future<[Movie], MovieStoreAPIError> { [unowned self] promise in
-            guard let url = self.generateURL(with: endpoint) else { return promise(.failure(.urlError(URLError(URLError.unsupportedURL)))) }
+            guard let url = self.generateURL(with: endpoint, page: page) else { return promise(.failure(.urlError(URLError(URLError.unsupportedURL)))) }
             
             self.urlSession.dataTaskPublisher(for: url)
                 .tryMap { data, response -> Data in
@@ -56,12 +56,15 @@ public class MovieStore: MovieService {
         }
     }
     
-    private func generateURL(with endpoint: Endpoint) -> URL? {
+    private func generateURL(with endpoint: Endpoint, page: Int?) -> URL? {
         guard var urlComponents = URLComponents(string: "\(baseAPIURL)/movie/\(endpoint.rawValue)") else {
             return nil
         }
         
-        let queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+        var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+        if let page = page {
+            queryItems.append(URLQueryItem(name: "page", value: "\(page)"))
+        }
         urlComponents.queryItems = queryItems
         return urlComponents.url
     }

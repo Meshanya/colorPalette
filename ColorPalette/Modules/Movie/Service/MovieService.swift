@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 protocol MovieService {
-    func fetchMovies(from endpoint: Endpoint) -> Future<[Movie], MovieStoreAPIError>
+    func fetchMovies(from endpoint: Endpoint, with page: Int?) -> Future<[Movie], MovieStoreAPIError>
 //    func fetchMovie(id: Int) -> Future<Movie, MovieStoreAPIError>
 //    func searchMovie(query: String, params: [String: String]?) -> Future<[Movie], MovieStoreAPIError>
 }

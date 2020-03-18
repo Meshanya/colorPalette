@@ -13,9 +13,6 @@ struct MovieView: View {
     
     var body: some View {
         VStack {
-            Text("\(viewModel.indexEndpoint)")
-            Stepper("Enter your index", value: $viewModel.indexEndpoint, in: 0...3)
-                .padding()
             Picker("", selection: $viewModel.indexEndpoint) {
                 ForEach(0..<4) { index in
                     Text("\(Endpoint(index: index)!.description)").tag(index)
@@ -37,6 +34,14 @@ struct MovieView: View {
                             }
                         }
                     }
+                    .onAppear() {
+                        self.viewModel.listItemAppears(movie: movie)
+                    }
+                    if self.viewModel.isPageLoading {
+                        Divider()
+                        Text("Loading...")
+                            .padding(.vertical)
+                    }
                 }
             }
         }
@@ -47,5 +52,17 @@ struct MovieView_Previews: PreviewProvider {
     static var previews: some View {
         MovieView()
             .environmentObject(MoviesViewModel())
+    }
+}
+
+extension RandomAccessCollection where Self.Element: Identifiable {
+    public func isLast(_ item: Element)->Bool {
+        guard isEmpty == false else {
+            return false
+        }
+        guard let itemIndex = lastIndex(where: { AnyHashable($0.id) == AnyHashable(item.id) })  else {
+            return false
+        }
+        return distance(from: itemIndex, to: endIndex) == 1
     }
 }

@@ -22,6 +22,12 @@ struct MainTapBarView: View {
                     Text("Info")
                     Image(systemName: "info.circle")
             }
+            MovieView()
+                .environmentObject(MoviesViewModel())
+                .tabItem {
+                        Text("Movie")
+                        Image(systemName: "play")
+                }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

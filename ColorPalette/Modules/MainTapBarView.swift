@@ -9,29 +9,25 @@
 import SwiftUI
 
 struct MainTapBarView: View {
-    @State private var selectedTab = 0
-    @State private var selectedItem: Int?
-    
     var body: some View {
-        TabView(selection: $selectedTab) {
-            Button("Go to Your palettes", action: {
-                self.selectedTab = 1
-                self.selectedItem = 0
-            })
-                .tabItem {
-                    Text("Default Palettes")
-                    Image(systemName: "bandage")
-            }.tag(0)
-            UserPalettesView(selectedItem: $selectedItem).environmentObject(UserPalettesViewModel())
+        TabView {
+            UserPalettesView()
+                .environmentObject(UserPalettesViewModel())
                 .tabItem {
                     Text("Your palettes")
                     Image(systemName: "heart")
-            }.tag(1)
+            }
             ModalView()
                 .tabItem {
                     Text("Info")
                     Image(systemName: "info.circle")
-            }.tag(2)
+            }
+            MovieView()
+                .environmentObject(MoviesViewModel())
+                .tabItem {
+                        Text("Movie")
+                        Image(systemName: "play")
+                }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

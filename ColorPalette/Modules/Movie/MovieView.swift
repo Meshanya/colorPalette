@@ -15,8 +15,8 @@ struct MovieView: View {
         NavControllerView(transition: .custom(.scale)) {
             VStack {
                 Picker("", selection: self.$viewModel.indexEndpoint) {
-                    ForEach(0..<4) { index in
-                        Text("\(Endpoint(index: index)!.description)").tag(index)
+                    ForEach(Endpoint.allCases, id: \.description) {
+                        index in Text("\(index.description)").tag(index)
                     }
                 }
                 .padding()
